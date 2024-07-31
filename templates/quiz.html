@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="quiz-container">
+    <h2>Quiz</h2>
+    <form method="POST" class="quiz-form">
+        <label for="subjects">Select a Subject</label>
+        <select name="subjects" id="subjects" class="subject-select">
+            <option value="0">ALL</option>
+            {% for subject in subjects %}
+            <option value="{{ subject.subject_id }}">{{ subject.subject_name }}</option>
+            {% endfor %}
+        </select><br>
+        <div id="questions">
+            {% for question in questions %}
+            <div class="question-block" name="{{ question.subject_id }}">
+                <p class="question-text">{{ question.question_text }}</p>
+                {% for choice in question.choices %}
+                <label class="choice-label">
+                    <input type="radio" name="{{ question.question_id }}" value="{{ choice.choice_id }}">
+                    {{ choice.choice_text }}
+                </label><br>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+
+<script>
+    const parentQuestionEl = document.getElementById('questions');
+    const subjectEl = document.getElementById('subjects');
+    const allEl = parentQuestionEl.getElementsByTagName('div');
+
+    subjectEl.addEventListener('change', (event) => {
+        const subjectId = event.target.value;
+        const questionElms = document.getElementsByName(subjectId);
+
+        for (let i = 0; i < allEl.length; i++) {
+            allEl[i].style.display = (subjectId == 0 || allEl[i].getAttribute('name') == subjectId) ? 'block' : 'none';
+        }
+    });
+</script>
+{% endblock %}

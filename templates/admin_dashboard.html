@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+    <div class="dashboard-links">
+        <a href="{{ url_for('add_question') }}" class="dashboard-link">
+            <i class="fas fa-plus-circle"></i>
+            Add Question
+        </a>
+        <a href="{{ url_for('view_results') }}" class="dashboard-link">
+            <i class="fas fa-chart-bar"></i>
+            View Results
+        </a>
+    </div>
+</div>
+{% endblock %}

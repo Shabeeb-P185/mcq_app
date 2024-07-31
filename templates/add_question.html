@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="add-question-container">
+    <h2>Add Question</h2>
+    <form method="POST">
+        <label for="subjects">Select a Subject</label>
+        <select name="subjects" id="subjects">
+            {% for subject in subjects %}
+            <option value="{{ subject.subject_id }}">{{ subject.subject_name }}</option>
+            {% endfor %}
+        </select>
+        
+        <h3><label for="question">Question:</label></h3>
+        <textarea id="question" name="question" rows="2" cols="50" required></textarea>
+        
+        <label for="option1">Option 1:</label>
+        <input type="text" id="option1" name="option1" required>
+        
+        <label for="option2">Option 2:</label>
+        <input type="text" id="option2" name="option2" required>
+        
+        <label for="option3">Option 3:</label>
+        <input type="text" id="option3" name="option3" required>
+        
+        <label for="option4">Option 4:</label>
+        <input type="text" id="option4" name="option4" required>
+        
+        <label for="correct_option">Correct Option:</label>
+        <input type="text" id="correct_option" name="correct_option" required>
+        
+        <button type="submit">Add Question</button>
+    </form>
+</div>
+{% endblock %}
+

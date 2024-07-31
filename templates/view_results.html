@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="results-container">
+    <h2>Your Results</h2>
+    <table class="results-table">
+        <tr>
+            <th>Question</th>
+            <th>Your Answer</th>
+            <th>Correctness</th>
+        </tr>
+        {% for response in responses %}
+        <tr>
+            <td>{{ response.question_text }}</td>
+            <td>{{ response.choice_text }}</td>
+            {%- if response.is_correct == 1 -%}
+            <td class="correct">Correct</td>
+            {%- else -%}
+            <td class="wrong">Wrong</td>
+            {%- endif -%}
+        </tr>
+        {% endfor %}
+    </table>
+    <p class="total-marks">Total Marks: {{ current_mark }} / {{ total_marks }}</p>
+</div>
+{% endblock %}
+
